@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cadastro.MainPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+            <Label Text="Informações Sobre o Evento" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource PrimaryDarkText}"/>
+
+            <Entry Placeholder="Nome do envento"
+            Text="{Binding Nome}" />
+
+            <Label Text="Data do Início" />
+            <DatePicker 
+                   Date ="{Binding DataInicio}" />
+
+            <Label Text="Data do Fim" TextColor="{StaticResource PrimaryDarkText}"/>
+            <DatePicker
+            Date="{Binding  DataFim}" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Participantes" VerticalOptions="Center" TextColor="{StaticResource PrimaryDarkText}"/>
+                <Entry WidthRequest="120"
+                       Keyboard="Numeric"
+                       Text="{Binding NumeroParticipantes, Mode=TwoWay}" TextColor="{StaticResource PrimaryDarkText}" />
+            </HorizontalStackLayout>
+
+            <Entry Placeholder="Local"
+            Text="{Binding Local}" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Custo por pessoa" VerticalOptions="Center"/>
+                <Entry WidthRequest="120"
+                     Keyboard="Numeric"
+                     Text="{Binding CustoPorParticipante, Mode=TwoWay}" TextColor="{StaticResource PrimaryDarkText}"/>
+            </HorizontalStackLayout>
+
+            <Frame Padding="15"  BackgroundColor="{DynamicResource CorFundo}" CornerRadius="10">
+                <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding DuracaoDias, StringFormat='Duração: {0} Dias'}" TextColor="{StaticResource PrimaryDarkText}" />
+
+
+                            <Label>
+                        <Label.Text>
+                            <MultiBinding StringFormat="Total: R$ {0:N2}" >
+                                <Binding Path="CustoTotal"/>
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+            <Button Text="Calcular Custo Total"
+              Clicked="onConcluirCadastroClicked" 
+                    BackgroundColor="{DynamicResource CorBotao}"
+TextColor="{DynamicResource CorTextoBotao}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
